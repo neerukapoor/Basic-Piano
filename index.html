@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Sargam</title>
+</head>
+<body>
+    <div class="selector">
+        <div class="wrapper">
+            <select onchange="handleSelectChange(event)">
+                <option>C</option>
+                <option>F#</option>
+                <option>G</option>
+                <option>B</option>
+                <option>A#</option>
+                <option>A</option>
+                <option>G#</option>
+                <option>F</option>
+                <option>E</option>
+                <option>D#</option>
+                <option>D</option>
+                <option>C#</option>
+            </select>
+        </div>
+    </div>
+    <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">S</span>
+        </div>
+
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">R</span>
+        </div>
+
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">G</span>
+        </div>
+
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">M</span>
+        </div>
+
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">P</span>
+        </div>
+
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">D</span>
+        </div>
+
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">N</span>
+        </div>
+
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">S`</span>
+        </div>
+    </div>
+
+    <audio data-key="65" src="/sounds/F/s.wav"></audio>
+    <audio data-key="83" src="/sounds/F/r.wav"></audio>
+    <audio data-key="68" src="/sounds/F/g.wav"></audio>
+    <audio data-key="70" src="/sounds/F/m.wav"></audio>
+    <audio data-key="71" src="/sounds/F/p.wav"></audio>
+    <audio data-key="72" src="/sounds/F/d.wav"></audio>
+    <audio data-key="74" src="/sounds/F/n.wav"></audio>
+    <audio data-key="75" src="/sounds/F/su.wav"></audio>
+
+    <script>
+        var scale=""
+        window.addEventListener("keydown", (e) => {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+            if(!audio)
+                return;
+            audio.currentTime = 0;
+            audio.play();
+            key.classList.add('playing')
+        });
+
+        function removeTransition(e) {  
+            this.classList.remove('playing')
+        }
+
+        const keys = document.querySelectorAll('.key');
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+
+
+        // Select
+        function handleSelectChange(e) {
+            console.log(e.target.value);
+            scale = e.target.value;
+        }
+
+    </script>
+</body>
+</html>

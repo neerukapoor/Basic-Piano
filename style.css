@@ -8,8 +8,10 @@
 
 body {
     background-image: url("/images/piano.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .keys {
@@ -58,9 +60,10 @@ span {
 }
 
 select {
-    padding: 0.5rem;
+    padding: 1.55rem;
     border: none;
     background-color: #fff6fd;
     color: rgb(100, 100, 100);
     border-radius: 0.75rem;
+    font-size: 23px;
 }

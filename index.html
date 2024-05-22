@@ -27,42 +27,42 @@
     </div>
     <div class="keys">
         <div data-key="65" class="key">
-            <kbd>A</kbd>
+            <kbd></kbd>
             <span class="sound">S</span>
         </div>
 
         <div data-key="83" class="key">
-            <kbd>S</kbd>
+            <kbd></kbd>
             <span class="sound">R</span>
         </div>
 
         <div data-key="68" class="key">
-            <kbd>D</kbd>
+            <kbd></kbd>
             <span class="sound">G</span>
         </div>
 
         <div data-key="70" class="key">
-            <kbd>F</kbd>
+            <kbd></kbd>
             <span class="sound">M</span>
         </div>
 
         <div data-key="71" class="key">
-            <kbd>G</kbd>
+            <kbd></kbd>
             <span class="sound">P</span>
         </div>
 
         <div data-key="72" class="key">
-            <kbd>H</kbd>
+            <kbd></kbd>
             <span class="sound">D</span>
         </div>
 
         <div data-key="74" class="key">
-            <kbd>J</kbd>
+            <kbd></kbd>
             <span class="sound">N</span>
         </div>
 
         <div data-key="75" class="key">
-            <kbd>K</kbd>
+            <kbd></kbd>
             <span class="sound">S`</span>
         </div>
     </div>
@@ -131,6 +131,33 @@
         function handleSelectChange(e) {
             scale = e.target.value;
         }
+
+        // Update kbd content based on viewport width
+        function updateKbdContent() {
+            const keyMappings = {
+                65: 'A',
+                83: 'S',
+                68: 'D',
+                70: 'F',
+                71: 'G',
+                72: 'H',
+                74: 'J',
+                75: 'K'
+            };
+
+            keys.forEach(key => {
+                const dataKey = key.getAttribute('data-key');
+                const kbd = key.querySelector('kbd');
+                if (window.innerWidth >= 550) {
+                    kbd.textContent = keyMappings[dataKey];
+                } else {
+                    kbd.textContent = '';
+                }
+            });
+        }
+
+        window.addEventListener('resize', updateKbdContent);
+        window.addEventListener('load', updateKbdContent);
 
     </script>
 </body>
